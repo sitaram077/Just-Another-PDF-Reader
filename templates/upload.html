@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload PDF for Summarization</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+        .markdown {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload PDF to Get Summarized Text</h1>
+    <form method="POST" action="/upload-pdf" enctype="multipart/form-data">
+        <input type="file" name="pdf" accept="application/pdf" required>
+        <br><br>
+        <button type="submit">Upload PDF</button>
+    </form>
+
+    {% if generated_text %}
+    <div id="result" class="markdown">
+        <h2>Summarized Text:</h2>
+        <div>{{ generated_text|safe }}</div>
+    </div>
+    {% endif %}
+</body>
+</html>
